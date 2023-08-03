@@ -8,7 +8,7 @@ import Propos from '../components/propos/Propos'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='relative'>
         <Navbar />
         <Hero />
         <EarnMoney />

@@ -1,11 +1,18 @@
 import React from "react";
 import Boltlogo from "../../assets/Boltlogo.svg";
 import Eng from '../../assets/english.svg'
+import {FiMenu} from 'react-icons/fi'
+import {FiX} from 'react-icons/fi'
+import {useState} from 'react'
 
 const Navbar = () => {
+  const[toggle, setToggle] = useState(false)
+    const letToggle = () => {
+    setToggle(!toggle)
+    }
   return (
-    <nav className="pb-4 flex flex-col gap-4 ">
-      <div className="bg-[#f9fafb] flex justify-between px-[6.5rem] p-3">
+    <nav className="pb-4 flex flex-col gap-4 relative">
+      <div className="bg-[#f9fafb] lg:block sm:hidden md:hidden flex justify-between sm:px-0 px-[6.5rem] p-3">
         <div className="flex gap-1 items-center">
             <img src={Eng} className="w-[1.5rem] h-[1.5rem]"/>
             <p>English</p>
@@ -21,11 +28,17 @@ const Navbar = () => {
         </div>
       </div> 
 
-      <div className="flex gap-6 px-[6.5rem]">
-        <div>
-          <img src={Boltlogo} alt="Logo" />
+      <div>
+      <div className="flex gap-6 px-2 lg:px-[6.5rem]">
+      <div className="flex gap-3 mt-3 items-center relative">
+      <div className='hidden sm:block md:block top-[0.2rem] absolute' onClick={letToggle}>
+        {toggle ? <FiX size={28}/> :<FiMenu size={28}/>}
+      </div>
+        <div className={toggle ? "hidden" : 'block ml-10' }>
+          <img src={Boltlogo} alt="Logo" className=""/>
+        </div>    
         </div>
-        <div className="flex gap-[2px]">
+        <div className={toggle ? "text-white bg-slate-600 flex flex-col justify-center items-center w-full h-screen" : "flex gap-[2px] relative sm:hidden md:hidden"}>
         <div>
         <button
           id="dropdownDefaultButton"
@@ -478,6 +491,7 @@ const Navbar = () => {
       </div>
         </div>
       </div>
+      </div>      
     </nav>
   );
 };
